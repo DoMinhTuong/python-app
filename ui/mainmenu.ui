@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Account_page">
      <property name="enabled">
@@ -227,6 +227,53 @@ border-radius: 5px;</string>
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
+      <widget class="QTextEdit" name="textEdit">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>10</y>
+         <width>961</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI Black</family>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(255, 255, 255);
+placeholder-text-point-size: 20;
+border-radius: 15px;</string>
+       </property>
+       <property name="placeholderText">
+        <string>Finding something?</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>90</y>
+         <width>331</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI Black</family>
+         <pointsize>30</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(255, 255, 255);
+border-radius: 5px;</string>
+       </property>
+       <property name="text">
+        <string>You may like:</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
