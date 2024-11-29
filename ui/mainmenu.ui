@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Account_page">
      <property name="enabled">
@@ -48,7 +48,7 @@
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="Signup_btn">
        <property name="geometry">
         <rect>
          <x>100</x>
@@ -72,7 +72,7 @@ border-radius:75px;</string>
         <string>Sign up</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="Login_btn">
        <property name="geometry">
         <rect>
          <x>700</x>
@@ -115,7 +115,7 @@ border-radius: 30px</string>
        <property name="frameShadow">
         <enum>QFrame::Shadow::Raised</enum>
        </property>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="NAAAG_label">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -138,7 +138,7 @@ border-radius: 5px;</string>
          <string>Not avalable as a guest</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="NAAAG_label_2">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -161,7 +161,7 @@ border-radius: 5px;</string>
          <string>Not avalable as a guest</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="NAAAG_label_3">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -184,7 +184,7 @@ border-radius: 5px;</string>
          <string>Not avalable as a guest</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="profile_image_label">
         <property name="geometry">
          <rect>
           <x>40</x>
