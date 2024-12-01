@@ -581,10 +581,10 @@ border-radius: 15px;</string>
       <widget class="QLabel" name="label_4">
        <property name="geometry">
         <rect>
-         <x>100</x>
-         <y>100</y>
-         <width>351</width>
-         <height>101</height>
+         <x>0</x>
+         <y>90</y>
+         <width>531</width>
+         <height>91</height>
         </rect>
        </property>
        <property name="font">
@@ -598,7 +598,7 @@ border-radius: 15px;</string>
 border-radius: 5px;</string>
        </property>
        <property name="text">
-        <string>You may like:</string>
+        <string>Recommend for you:</string>
        </property>
       </widget>
       <widget class="QFrame" name="frame_5">
