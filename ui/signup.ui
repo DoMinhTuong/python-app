@@ -14,20 +14,20 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:rgb(0, 101, 0);</string>
+   <string notr="true">background-color:rgb(0, 0, 0);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>20</y>
+      <y>0</y>
       <width>181</width>
-      <height>271</height>
+      <height>301</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:rgb(30, 30, 30);
+     <string notr="true">background-color:rgb(0, 85, 0);
 border-radius: 20px;</string>
     </property>
     <property name="frameShape">
@@ -191,6 +191,22 @@ border-radius: 30px;</string>
        <bool>true</bool>
       </property>
      </widget>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>35</x>
+       <y>270</y>
+       <width>111</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Already have an account?</string>
+     </property>
     </widget>
    </widget>
   </widget>
