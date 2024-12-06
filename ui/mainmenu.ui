@@ -582,8 +582,8 @@ border-radius: 15px;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>90</y>
-         <width>531</width>
+         <y>100</y>
+         <width>521</width>
          <height>91</height>
         </rect>
        </property>
