@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Account_page">
      <property name="enabled">
@@ -40,7 +40,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:rgb(0, 255, 0);</string>
+       <string notr="true">background-color:rgb(92, 92, 92);</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Shape::StyledPanel</enum>
@@ -214,7 +214,7 @@ border-radius: 5px;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:rgb(0, 170, 0);</string>
+       <string notr="true">background-color:rgb(92, 92, 92);</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Shape::StyledPanel</enum>
@@ -264,13 +264,13 @@ border-radius:15px;</string>
        <property name="frameShadow">
         <enum>QFrame::Shadow::Raised</enum>
        </property>
-       <widget class="QPushButton" name="pushButton_12">
+       <widget class="QPushButton" name="plus_playlist_btn">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>411</width>
-          <height>111</height>
+          <x>180</x>
+          <y>50</y>
+          <width>251</width>
+          <height>91</height>
          </rect>
         </property>
         <property name="font">
@@ -292,11 +292,56 @@ border-radius: 20px;
           <normaloff>../img/plus-solid.svg</normaloff>../img/plus-solid.svg</iconset>
         </property>
        </widget>
+       <widget class="QLabel" name="playlist_name_txt">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>10</y>
+          <width>251</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI Black</family>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);
+border-radius: 13px;</string>
+        </property>
+        <property name="text">
+         <string>No playlist</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>30</y>
+          <width>100</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../img/music-solid.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
       </widget>
       <widget class="QFrame" name="playlist_frame_2">
        <property name="geometry">
         <rect>
-         <x>530</x>
+         <x>520</x>
          <y>140</y>
          <width>450</width>
          <height>150</height>
@@ -312,13 +357,13 @@ border-radius:15px;</string>
        <property name="frameShadow">
         <enum>QFrame::Shadow::Raised</enum>
        </property>
-       <widget class="QPushButton" name="pushButton_13">
+       <widget class="QPushButton" name="plus_playlist_btn_2">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>411</width>
-          <height>111</height>
+          <x>180</x>
+          <y>50</y>
+          <width>251</width>
+          <height>91</height>
          </rect>
         </property>
         <property name="font">
@@ -338,6 +383,51 @@ border-radius: 20px;
         <property name="icon">
          <iconset>
           <normaloff>../img/plus-solid.svg</normaloff>../img/plus-solid.svg</iconset>
+        </property>
+       </widget>
+       <widget class="QLabel" name="playlist_name_txt_2">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>10</y>
+          <width>251</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI Black</family>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);
+border-radius: 13px;</string>
+        </property>
+        <property name="text">
+         <string>No playlist</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_11">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>30</y>
+          <width>100</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../img/music-solid.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
         </property>
        </widget>
       </widget>
@@ -345,7 +435,7 @@ border-radius: 20px;
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>320</y>
+         <y>310</y>
          <width>450</width>
          <height>150</height>
         </rect>
@@ -360,13 +450,13 @@ border-radius:15px;</string>
        <property name="frameShadow">
         <enum>QFrame::Shadow::Raised</enum>
        </property>
-       <widget class="QPushButton" name="pushButton_14">
+       <widget class="QPushButton" name="plus_playlist_btn_3">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>411</width>
-          <height>111</height>
+          <x>180</x>
+          <y>50</y>
+          <width>251</width>
+          <height>91</height>
          </rect>
         </property>
         <property name="font">
@@ -388,12 +478,57 @@ border-radius: 20px;
           <normaloff>../img/plus-solid.svg</normaloff>../img/plus-solid.svg</iconset>
         </property>
        </widget>
+       <widget class="QLabel" name="playlist_name_txt_3">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>10</y>
+          <width>251</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI Black</family>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);
+border-radius: 13px;</string>
+        </property>
+        <property name="text">
+         <string>No playlist</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_13">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>30</y>
+          <width>100</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../img/music-solid.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
       </widget>
       <widget class="QFrame" name="playlist_frame_4">
        <property name="geometry">
         <rect>
-         <x>530</x>
-         <y>320</y>
+         <x>520</x>
+         <y>310</y>
          <width>450</width>
          <height>150</height>
         </rect>
@@ -408,13 +543,13 @@ border-radius:15px;</string>
        <property name="frameShadow">
         <enum>QFrame::Shadow::Raised</enum>
        </property>
-       <widget class="QPushButton" name="pushButton_15">
+       <widget class="QPushButton" name="plus_playlist_btn_4">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>411</width>
-          <height>111</height>
+          <x>180</x>
+          <y>50</y>
+          <width>251</width>
+          <height>91</height>
          </rect>
         </property>
         <property name="font">
@@ -434,6 +569,51 @@ border-radius: 20px;
         <property name="icon">
          <iconset>
           <normaloff>../img/plus-solid.svg</normaloff>../img/plus-solid.svg</iconset>
+        </property>
+       </widget>
+       <widget class="QLabel" name="playlist_name_txt_4">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>10</y>
+          <width>251</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI Black</family>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);
+border-radius: 13px;</string>
+        </property>
+        <property name="text">
+         <string>No playlist</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_16">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>30</y>
+          <width>100</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../img/music-solid.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
         </property>
        </widget>
       </widget>
@@ -441,7 +621,7 @@ border-radius: 20px;
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>490</y>
+         <y>480</y>
          <width>450</width>
          <height>150</height>
         </rect>
@@ -456,13 +636,13 @@ border-radius:15px;</string>
        <property name="frameShadow">
         <enum>QFrame::Shadow::Raised</enum>
        </property>
-       <widget class="QPushButton" name="pushButton_16">
+       <widget class="QPushButton" name="plus_playlist_btn_5">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>411</width>
-          <height>111</height>
+          <x>180</x>
+          <y>50</y>
+          <width>251</width>
+          <height>91</height>
          </rect>
         </property>
         <property name="font">
@@ -484,12 +664,57 @@ border-radius: 20px;
           <normaloff>../img/plus-solid.svg</normaloff>../img/plus-solid.svg</iconset>
         </property>
        </widget>
+       <widget class="QLabel" name="playlist_name_txt_5">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>10</y>
+          <width>251</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI Black</family>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);
+border-radius: 13px;</string>
+        </property>
+        <property name="text">
+         <string>No playlist</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_18">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>30</y>
+          <width>100</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../img/music-solid.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
       </widget>
       <widget class="QFrame" name="playlist_frame_6">
        <property name="geometry">
         <rect>
-         <x>530</x>
-         <y>490</y>
+         <x>520</x>
+         <y>480</y>
          <width>450</width>
          <height>150</height>
         </rect>
@@ -504,13 +729,13 @@ border-radius:15px;</string>
        <property name="frameShadow">
         <enum>QFrame::Shadow::Raised</enum>
        </property>
-       <widget class="QPushButton" name="pushButton_17">
+       <widget class="QPushButton" name="plus_playlist_btn_6">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>411</width>
-          <height>111</height>
+          <x>180</x>
+          <y>50</y>
+          <width>251</width>
+          <height>91</height>
          </rect>
         </property>
         <property name="font">
@@ -530,6 +755,51 @@ border-radius: 20px;
         <property name="icon">
          <iconset>
           <normaloff>../img/plus-solid.svg</normaloff>../img/plus-solid.svg</iconset>
+        </property>
+       </widget>
+       <widget class="QLabel" name="playlist_name_txt_6">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>10</y>
+          <width>251</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI Black</family>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);
+border-radius: 13px;</string>
+        </property>
+        <property name="text">
+         <string>No playlist</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_20">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>30</y>
+          <width>100</width>
+          <height>100</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../img/music-solid.svg</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
         </property>
        </widget>
       </widget>
@@ -546,7 +816,7 @@ border-radius: 20px;
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:rgb(80, 80, 80);</string>
+       <string notr="true">background-color:rgb(92, 92, 92);</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Shape::StyledPanel</enum>
@@ -982,7 +1252,7 @@ border-radius: 20px;</string>
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="start_btn">
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -999,7 +1269,7 @@ border-radius: 20px;</string>
        <normaloff>../img/images.png</normaloff>../img/images.png</iconset>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="playing_song_txt">
      <property name="geometry">
       <rect>
        <x>230</x>
@@ -1022,7 +1292,7 @@ border-radius: 7px</string>
       <string>Not listening to anything</string>
      </property>
     </widget>
-    <widget class="QSlider" name="horizontalSlider">
+    <widget class="QSlider" name="music_progress_bar">
      <property name="geometry">
       <rect>
        <x>20</x>
