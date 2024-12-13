@@ -78,15 +78,27 @@ class Register(QMainWindow):
         super().__init__()
         uic.loadUi('ui/signup.ui', self)
         
-        self.email_input = self.findChild(QPushButton, 'txt_email')
-        self.name_input = self.findChild(QPushButton, 'txt_name')
-        self.password_input = self.findChild(QPushButton, 'txt_password')
-        self.comfirm_password_input = self.findChild(QPushButton, 'txt_confirm_password')
+        self.email_input = self.findChild(QPushButton, 'email_txt')
+        self.name_input = self.findChild(QPushButton, 'username_txt')
+        self.password_input = self.findChild(QPushButton, 'password_txt')
+        self.comfirm_password_input = self.findChild(QPushButton, 'confirm_password_txt')
         
-        self.btn_register = self.findChild(QPushButton, 'btn_register')
-        self.btn_login = self.findChild(QPushButton, 'btn_login')
+        self.btn_register = self.findChild(QPushButton, 'signup_btn')
+        self.btn_login = self.findChild(QPushButton, 'tosignin_btn')
+        self.btn_hidepassword1 = self.findChild(QPushButton, 'hidepassword_btn1')
+        self.btn_hidepassword2 = self.findChild(QPushButton, 'hidepassword_btn2')
         
-        self.btn_hidepassword.clicked.connect(lambda: self.hiddenOrShow(self.password_input, self.btn_hidepassword))
+        self.btn_hidepassword1.clicked.connect(lambda: self.hiddenOrShow(self.password_input, self.btn_hidepassword1))
+        
+    def hiddenOrShow(self, input:QLineEdit, button:QPushButton):
+        if input.echoMode() == QLineEdit.EchoMode.Password:
+            input.setEchoMode(QLineEdit.EchoMode.Normal)
+            button.setIcon(QIcon("img/eye-solid.svg"))
+        else:
+            input.setEchoMode(QLineEdit.EchoMode.Password)
+            button.setIcon(QIcon("img/eye-slash-solid.svg"))
+        
+        self.btn_hidepassword2.clicked.connect(lambda: self.hiddenOrShow(self.comfirm_password_input, self.btn_hidepassword2))
         
     def hiddenOrShow(self, input:QLineEdit, button:QPushButton):
         if input.echoMode() == QLineEdit.EchoMode.Password:

@@ -197,7 +197,7 @@ border-radius: 99px;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="tosignin_btn">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -218,7 +218,7 @@ border-radius: 99px;</string>
       <string>Already have an account?</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="btn_hidepassword1">
      <property name="geometry">
       <rect>
        <x>360</x>
@@ -238,7 +238,7 @@ border-radius: 99px;</string>
        <normaloff>../img/eye-slash-solid.svg</normaloff>../img/eye-slash-solid.svg</iconset>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="btn_hidepassword2">
      <property name="geometry">
       <rect>
        <x>360</x>
