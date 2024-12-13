@@ -52,6 +52,9 @@ background-color:rgb(255, 255, 255);
 font-size: 25px;
 </string>
      </property>
+     <property name="echoMode">
+      <enum>QLineEdit::EchoMode::Password</enum>
+     </property>
      <property name="placeholderText">
       <string>Password</string>
      </property>
@@ -175,7 +178,7 @@ border-radius: 50px;</string>
       <string>Don't have an account?</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="hidepassword_btn">
      <property name="geometry">
       <rect>
        <x>379</x>
