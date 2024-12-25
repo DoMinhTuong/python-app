@@ -17,7 +17,7 @@ def find_user_by_email(email):
     conn = sqlite3.connect('./data/database.db')
     cursor = conn .cursor()
     cursor.row_factory = dict_factory
-    cursor.execute('SELECT email, name, password FROM user WHERE email = ?', (email,))
+    cursor.execute('SELECT id, email, name, password FROM user WHERE email = ?', (email,))
     user = cursor.fetchone()
     conn.commit()
     conn.close()
@@ -27,7 +27,7 @@ def find_user_by_email_and_password(email, password):
     conn = sqlite3.connect('./data/database.db')
     cursor = conn.cursor()
     cursor.row_factory = dict_factory
-    cursor.execute('SELECT email, name, password FROM user WHERE email = ? AND password = ?', (email, password))
+    cursor.execute('SELECT id, email, name, password FROM user WHERE email = ? AND password = ?', (email, password))
     user = cursor.fetchone()
     conn.commit()
     conn.close()
