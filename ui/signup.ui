@@ -48,7 +48,8 @@ border-radius: 20px;</string>
      <property name="styleSheet">
       <string notr="true">background-color:rgb(255, 255, 255);
 border-radius: 15px;
-font-size:20px;</string>
+font-size:20px;
+color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
       <string/>
@@ -69,7 +70,8 @@ font-size:20px;</string>
      <property name="styleSheet">
       <string notr="true">background-color:rgb(255, 255, 255);
 border-radius: 15px;
-font-size:20px;</string>
+font-size:20px;
+color: rgb(0, 0, 0);</string>
      </property>
      <property name="placeholderText">
       <string>Username</string>
@@ -87,7 +89,8 @@ font-size:20px;</string>
      <property name="styleSheet">
       <string notr="true">background-color:rgb(255, 255, 255);
 border-radius: 15px;
-font-size:20px;</string>
+font-size:20px;
+color: rgb(0, 0, 0);</string>
      </property>
      <property name="echoMode">
       <enum>QLineEdit::EchoMode::Password</enum>
@@ -137,7 +140,8 @@ font-size:20px;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 30px;</string>
+border-radius: 30px;
+color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
       <string>Sign up</string>
@@ -155,7 +159,8 @@ border-radius: 30px;</string>
      <property name="styleSheet">
       <string notr="true">background-color:rgb(255, 255, 255);
 border-radius: 15px;
-font-size:20px;</string>
+font-size:20px;
+color: rgb(0, 0, 0);</string>
      </property>
      <property name="echoMode">
       <enum>QLineEdit::EchoMode::Password</enum>
@@ -272,7 +277,7 @@ border-radius: 99px;</string>
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>26</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

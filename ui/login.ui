@@ -50,7 +50,7 @@ border-radius: 10px</string>
       <string notr="true">border-radius:20px;
 background-color:rgb(255, 255, 255);
 font-size: 25px;
-</string>
+color: rgb(0, 0, 0);</string>
      </property>
      <property name="echoMode">
       <enum>QLineEdit::EchoMode::Password</enum>
@@ -72,6 +72,7 @@ font-size: 25px;
       <string notr="true">border-radius:20px;
 background-color:rgb(255, 255, 255);
 font-size: 25px;
+color: rgb(0, 0, 0);
 </string>
      </property>
      <property name="placeholderText">
@@ -154,7 +155,8 @@ border-radius:99px;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 50px;</string>
+border-radius: 50px;
+color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
       <string>Login</string>
@@ -206,7 +208,7 @@ border-radius: 50px;</string>
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>26</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

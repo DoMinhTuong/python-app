@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QMainWindow, QApplication, QMessageBox, QPushButton, QLineEdit
+from PyQt6.QtWidgets import QMainWindow, QApplication, QMessageBox, QPushButton, QLineEdit, QStackedWidget
 from PyQt6.QtGui import QIcon
 from PyQt6 import uic
 import sys
@@ -12,7 +12,7 @@ class Alert(QMessageBox):
         self.exec()
         
     def success_message(self, message):
-        self.setIcon(QMessageBox.Icon.Critical)
+        self.setIcon(QMessageBox.Icon.Information)
         self.setText(message)
         self.setWindowTitle('Success')
         self.exec()
@@ -137,7 +137,7 @@ class Register(QMainWindow):
             msg = Alert()
             msg.error_message('Email already exist')
         else:
-            database.create_user(email, password)
+            database.create_user(email, name, password)
             msg = Alert()
             msg.success_message('Registration successfully')
             self.show_login()
@@ -151,6 +151,19 @@ class Home(QMainWindow):
         super().__init__()
         uic.loadUi('ui/mainmenu.ui', self)
         self.user_id = user_id  
+        
+        self.btn_playlist = self.findChild(QPushButton, 'playlist_btn')
+        self.btn_user = self.findChild(QPushButton, 'user_btn')
+        self.btn_search = self.findChild(QPushButton, 'search_btn')
+        self.stackedWidget = self.findChild(QStackedWidget, 'stackedWidget')
+        
+        self.btn_playlist.clicked.connect(lambda: self.navigate(1))
+        self.btn_user.clicked.connect(lambda: self.navigate(0))
+        self.btn_search.clicked.connect(lambda: self.navigate(2))
+    
+    def navigate(self, index):
+        self.stackedWidget.setCurrentIndex(index)
+        
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     login = Login()
