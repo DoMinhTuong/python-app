@@ -67,7 +67,7 @@ border-radius: 30px</string>
        <property name="frameShadow">
         <enum>QFrame::Shadow::Raised</enum>
        </property>
-       <widget class="QLabel" name="NAAAG_label">
+       <widget class="QLabel" name="username_label">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -90,7 +90,7 @@ border-radius: 5px;</string>
          <string>Not avalable as a guest</string>
         </property>
        </widget>
-       <widget class="QLabel" name="NAAAG_label_2">
+       <widget class="QLabel" name="useremail_label">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -113,7 +113,7 @@ border-radius: 5px;</string>
          <string>Not avalable as a guest</string>
         </property>
        </widget>
-       <widget class="QLabel" name="NAAAG_label_3">
+       <widget class="QLabel" name="userid_label">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -891,7 +891,7 @@ border-radius: 20px;</string>
 border-radius: 20px;</string>
         </property>
         <property name="text">
-         <string>Pop / Party</string>
+         <string>Party</string>
         </property>
        </widget>
       </widget>
@@ -1213,6 +1213,10 @@ border-radius: 20px;</string>
        <height>41</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:rgb(255, 255, 255);
+border-radius:5px;</string>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -1252,6 +1256,9 @@ border-radius: 7px</string>
        <width>981</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="orientation">
       <enum>Qt::Orientation::Horizontal</enum>
@@ -1350,7 +1357,7 @@ border-radius: 7px</string>
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>24</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
