@@ -1207,10 +1207,10 @@ border-radius: 20px;</string>
     <widget class="QPushButton" name="start_btn">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>18</y>
+       <x>900</x>
+       <y>10</y>
        <width>93</width>
-       <height>41</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1228,10 +1228,10 @@ border-radius:5px;</string>
     <widget class="QLabel" name="playing_song_txt">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>20</y>
+       <x>650</x>
+       <y>10</y>
        <width>231</width>
-       <height>41</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="font">
@@ -1248,21 +1248,38 @@ border-radius: 7px</string>
       <string>Not listening to anything</string>
      </property>
     </widget>
-    <widget class="QSlider" name="music_progress_bar">
+    <widget class="QFrame" name="frame_10">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>0</y>
-       <width>981</width>
-       <height>20</height>
+       <y>20</y>
+       <width>611</width>
+       <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">background-color:rgb(255, 255, 255);
+border-radius:3px;</string>
      </property>
-     <property name="orientation">
-      <enum>Qt::Orientation::Horizontal</enum>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
      </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <widget class="QSlider" name="horizontalSlider">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>591</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QFrame" name="frame_9">
