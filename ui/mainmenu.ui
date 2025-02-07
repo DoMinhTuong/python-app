@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Account_page">
      <property name="enabled">
@@ -256,12 +256,14 @@ border-radius: 20px;
         <property name="font">
          <font>
           <family>Segoe UI Black</family>
-          <pointsize>15</pointsize>
+          <pointsize>-1</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 13px;</string>
+         <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+font-size:20px;
+color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>No playlist</string>
@@ -349,12 +351,14 @@ border-radius: 20px;
         <property name="font">
          <font>
           <family>Segoe UI Black</family>
-          <pointsize>15</pointsize>
+          <pointsize>-1</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 13px;</string>
+         <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+font-size:20px;
+color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>No playlist</string>
@@ -442,12 +446,14 @@ border-radius: 20px;
         <property name="font">
          <font>
           <family>Segoe UI Black</family>
-          <pointsize>15</pointsize>
+          <pointsize>-1</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 13px;</string>
+         <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+font-size:20px;
+color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>No playlist</string>
@@ -535,12 +541,14 @@ border-radius: 20px;
         <property name="font">
          <font>
           <family>Segoe UI Black</family>
-          <pointsize>15</pointsize>
+          <pointsize>-1</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 13px;</string>
+         <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+font-size:20px;
+color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>No playlist</string>
@@ -628,12 +636,14 @@ border-radius: 20px;
         <property name="font">
          <font>
           <family>Segoe UI Black</family>
-          <pointsize>15</pointsize>
+          <pointsize>-1</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 13px;</string>
+         <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+font-size:20px;
+color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>No playlist</string>
@@ -721,12 +731,14 @@ border-radius: 20px;
         <property name="font">
          <font>
           <family>Segoe UI Black</family>
-          <pointsize>15</pointsize>
+          <pointsize>-1</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 13px;</string>
+         <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+font-size:20px;
+color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>No playlist</string>
@@ -804,9 +816,9 @@ border-radius: 15px;</string>
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>90</y>
+         <y>100</y>
          <width>211</width>
-         <height>91</height>
+         <height>81</height>
         </rect>
        </property>
        <property name="font">
@@ -816,8 +828,9 @@ border-radius: 15px;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 10px;</string>
+        <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+color: rgb(0, 0, 0);</string>
        </property>
        <property name="text">
         <string>For you:</string>
@@ -887,8 +900,9 @@ border-radius: 20px;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 20px;</string>
+         <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>Party</string>
@@ -959,8 +973,9 @@ border-radius: 20px;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 20px;</string>
+         <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>Classic</string>
@@ -1031,8 +1046,9 @@ border-radius: 20px;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 20px;</string>
+         <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>Chill</string>
@@ -1103,8 +1119,9 @@ border-radius: 20px;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 20px;</string>
+         <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>Rock</string>
@@ -1175,8 +1192,9 @@ border-radius: 20px;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 20px;</string>
+         <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
          <string>Pop</string>
@@ -1215,7 +1233,8 @@ border-radius: 20px;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color:rgb(255, 255, 255);
-border-radius:5px;</string>
+border-radius: 15px;
+</string>
      </property>
      <property name="text">
       <string/>
@@ -1237,12 +1256,14 @@ border-radius:5px;</string>
      <property name="font">
       <font>
        <family>Segoe UI Black</family>
-       <pointsize>11</pointsize>
+       <pointsize>-1</pointsize>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:rgb(255, 255, 255);
-border-radius: 7px</string>
+      <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;
+font-size:18px;
+color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
       <string>Not listening to anything</string>
@@ -1258,8 +1279,8 @@ border-radius: 7px</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:rgb(255, 255, 255);
-border-radius:3px;</string>
+      <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 15px;</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::Shape::StyledPanel</enum>
