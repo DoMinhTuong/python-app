@@ -143,9 +143,9 @@ border-radius:99px;</string>
      <property name="geometry">
       <rect>
        <x>90</x>
-       <y>540</y>
+       <y>530</y>
        <width>261</width>
-       <height>71</height>
+       <height>81</height>
       </rect>
      </property>
      <property name="font">

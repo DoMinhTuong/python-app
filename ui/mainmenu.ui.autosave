@@ -17,7 +17,7 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>93</x>
+      <x>100</x>
       <y>0</y>
       <width>931</width>
       <height>650</height>
@@ -51,8 +51,8 @@
       <widget class="QFrame" name="profile_frame">
        <property name="geometry">
         <rect>
-         <x>350</x>
-         <y>75</y>
+         <x>310</x>
+         <y>70</y>
          <width>300</width>
          <height>500</height>
         </rect>
@@ -1329,9 +1329,9 @@ border-radius: 15px;</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>80</y>
-       <width>71</width>
-       <height>61</height>
+       <y>110</y>
+       <width>81</width>
+       <height>81</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1350,8 +1350,8 @@ border-radius: 15px;</string>
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>71</width>
-       <height>61</height>
+       <width>81</width>
+       <height>81</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1369,9 +1369,9 @@ border-radius: 15px;</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>150</y>
-       <width>71</width>
-       <height>61</height>
+       <y>210</y>
+       <width>81</width>
+       <height>81</height>
       </rect>
      </property>
      <property name="styleSheet">

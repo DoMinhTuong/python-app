@@ -40,9 +40,9 @@ border-radius: 10x;</string>
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>349</y>
+       <y>330</y>
        <width>391</width>
-       <height>41</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -62,9 +62,9 @@ color: rgb(0, 0, 0);</string>
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>399</y>
+       <y>389</y>
        <width>391</width>
-       <height>41</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -83,7 +83,7 @@ color: rgb(0, 0, 0);</string>
        <x>20</x>
        <y>449</y>
        <width>391</width>
-       <height>41</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -152,9 +152,9 @@ color: rgb(0, 0, 0);</string>
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>499</y>
+       <y>510</y>
        <width>391</width>
-       <height>41</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -220,11 +220,13 @@ border-radius: 99px;</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>20</pointsize>
+       <pointsize>17</pointsize>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color:rgb(167, 167, 167);</string>
+      <string notr="true">background-color:rgb(118, 118, 118);
+border-radius: 10px;
+color:rgb(49, 49, 49);</string>
      </property>
      <property name="text">
       <string>Already have an account?</string>
@@ -254,7 +256,7 @@ border-radius: 99px;</string>
      <property name="geometry">
       <rect>
        <x>360</x>
-       <y>510</y>
+       <y>520</y>
        <width>41</width>
        <height>29</height>
       </rect>
