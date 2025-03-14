@@ -24,13 +24,13 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Account_page">
      <property name="enabled">
       <bool>true</bool>
      </property>
-     <widget class="QFrame" name="frame_2">
+     <widget class="QFrame" name="background_frame">
       <property name="geometry">
        <rect>
         <x>0</x>
