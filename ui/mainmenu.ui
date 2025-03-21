@@ -233,7 +233,7 @@ border-radius:15px;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
+         <string notr="true">background-color:rgb(118, 118, 118);
 border-radius: 20px;
 </string>
         </property>
@@ -328,7 +328,7 @@ border-radius:15px;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
+         <string notr="true">background-color:rgb(118, 118, 118);
 border-radius: 20px;
 </string>
         </property>
@@ -423,7 +423,7 @@ border-radius:15px;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
+         <string notr="true">background-color:rgb(118, 118, 118);
 border-radius: 20px;
 </string>
         </property>
@@ -518,7 +518,7 @@ border-radius:15px;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
+         <string notr="true">background-color:rgb(118, 118, 118);
 border-radius: 20px;
 </string>
         </property>
@@ -613,7 +613,7 @@ border-radius:15px;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
+         <string notr="true">background-color:rgb(118, 118, 118);
 border-radius: 20px;
 </string>
         </property>
@@ -708,7 +708,7 @@ border-radius:15px;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);
+         <string notr="true">background-color:rgb(118, 118, 118);
 border-radius: 20px;
 </string>
         </property>
