@@ -176,6 +176,29 @@ border-radius:10px;</string>
       <string>Song name</string>
      </property>
     </widget>
+    <widget class="QLabel" name="song_name_label_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>450</y>
+       <width>381</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI Black</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgb(145, 145, 145);
+</string>
+     </property>
+     <property name="text">
+      <string>Playing lyrics</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
