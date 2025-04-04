@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '/Users/pinxun/Documents/MindX/PTA/PTA07/FINAL PROJECT/MinhTuong/python-app/ui/signup.ui'
+# Form implementation generated from reading ui file '/Users/pinxun/Documents/MindX/PTA/PTA07/MinhTuong/python-app/ui/signup.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.0
 #
@@ -18,64 +18,65 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame.setGeometry(QtCore.QRect(40, 0, 431, 701))
-        self.frame.setStyleSheet("background-color:rgb(0, 85, 0);\n"
-"border-radius: 20px;")
+        self.frame.setStyleSheet("background-color:rgb(44, 44, 44);\n"
+"border-radius: 10x;")
         self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame.setObjectName("frame")
         self.email_txt = QtWidgets.QLineEdit(parent=self.frame)
-        self.email_txt.setGeometry(QtCore.QRect(20, 349, 391, 41))
-        self.email_txt.setStyleSheet("background-color:rgb(255, 255, 255);\n"
+        self.email_txt.setGeometry(QtCore.QRect(20, 330, 391, 51))
+        self.email_txt.setStyleSheet("background-color:rgb(118, 118, 118);\n"
 "border-radius: 15px;\n"
 "font-size:20px;\n"
 "color: rgb(0, 0, 0);")
         self.email_txt.setText("")
         self.email_txt.setObjectName("email_txt")
         self.username_txt = QtWidgets.QLineEdit(parent=self.frame)
-        self.username_txt.setGeometry(QtCore.QRect(20, 399, 391, 41))
-        self.username_txt.setStyleSheet("background-color:rgb(255, 255, 255);\n"
+        self.username_txt.setGeometry(QtCore.QRect(20, 389, 391, 51))
+        self.username_txt.setStyleSheet("background-color:rgb(118, 118, 118);\n"
 "border-radius: 15px;\n"
 "font-size:20px;\n"
 "color: rgb(0, 0, 0);")
         self.username_txt.setObjectName("username_txt")
         self.password_txt = QtWidgets.QLineEdit(parent=self.frame)
-        self.password_txt.setGeometry(QtCore.QRect(20, 449, 391, 41))
-        self.password_txt.setStyleSheet("background-color:rgb(255, 255, 255);\n"
+        self.password_txt.setGeometry(QtCore.QRect(20, 449, 391, 51))
+        self.password_txt.setStyleSheet("background-color:rgb(118, 118, 118);\n"
 "border-radius: 15px;\n"
 "font-size:20px;\n"
 "color: rgb(0, 0, 0);")
         self.password_txt.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.password_txt.setObjectName("password_txt")
         self.join = QtWidgets.QLabel(parent=self.frame)
-        self.join.setGeometry(QtCore.QRect(20, 30, 401, 61))
+        self.join.setGeometry(QtCore.QRect(20, 230, 401, 61))
         font = QtGui.QFont()
         font.setFamily("Bauhaus 93")
         font.setPointSize(37)
         font.setBold(False)
         self.join.setFont(font)
-        self.join.setStyleSheet("color:rgb(255, 255, 255);")
+        self.join.setStyleSheet("color:rgb(132, 132, 132);")
         self.join.setObjectName("join")
         self.signup_btn = QtWidgets.QPushButton(parent=self.frame)
-        self.signup_btn.setGeometry(QtCore.QRect(130, 550, 201, 91))
+        self.signup_btn.setGeometry(QtCore.QRect(100, 570, 231, 71))
         font = QtGui.QFont()
         font.setFamily("Bauhaus 93")
         font.setPointSize(35)
         font.setBold(False)
         self.signup_btn.setFont(font)
-        self.signup_btn.setStyleSheet("background-color:rgb(255, 255, 255);\n"
-"border-radius: 30px;\n"
+        self.signup_btn.setStyleSheet("background-color:rgb(118, 118, 118);\n"
+"border-radius: 15px;\n"
+"font-size:px;\n"
 "color: rgb(0, 0, 0);")
         self.signup_btn.setObjectName("signup_btn")
         self.confirm_password_txt = QtWidgets.QLineEdit(parent=self.frame)
-        self.confirm_password_txt.setGeometry(QtCore.QRect(20, 499, 391, 41))
-        self.confirm_password_txt.setStyleSheet("background-color:rgb(255, 255, 255);\n"
+        self.confirm_password_txt.setGeometry(QtCore.QRect(20, 510, 391, 51))
+        self.confirm_password_txt.setStyleSheet("background-color:rgb(118, 118, 118);\n"
 "border-radius: 15px;\n"
 "font-size:20px;\n"
 "color: rgb(0, 0, 0);")
         self.confirm_password_txt.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         self.confirm_password_txt.setObjectName("confirm_password_txt")
         self.frame_2 = QtWidgets.QFrame(parent=self.frame)
-        self.frame_2.setGeometry(QtCore.QRect(110, 120, 200, 200))
+        self.frame_2.setGeometry(QtCore.QRect(120, 10, 201, 201))
         self.frame_2.setStyleSheet("background-color:rgb(255, 255, 255);\n"
 "border-radius: 99px;")
         self.frame_2.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
@@ -84,33 +85,35 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(parent=self.frame_2)
         self.label.setGeometry(QtCore.QRect(40, 40, 125, 125))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("/Users/pinxun/Documents/MindX/PTA/PTA07/FINAL PROJECT/MinhTuong/python-app/ui/../img/logo.png"))
+        self.label.setPixmap(QtGui.QPixmap("/Users/pinxun/Documents/MindX/PTA/PTA07/MinhTuong/python-app/ui/../img/logo.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.tosignin_btn = QtWidgets.QPushButton(parent=self.frame)
         self.tosignin_btn.setGeometry(QtCore.QRect(30, 650, 371, 41))
         font = QtGui.QFont()
-        font.setPointSize(20)
+        font.setPointSize(17)
         self.tosignin_btn.setFont(font)
-        self.tosignin_btn.setStyleSheet("")
+        self.tosignin_btn.setStyleSheet("background-color:rgb(118, 118, 118);\n"
+"border-radius: 10px;\n"
+"color:rgb(49, 49, 49);")
         self.tosignin_btn.setObjectName("tosignin_btn")
         self.hidepassword_btn1 = QtWidgets.QPushButton(parent=self.frame)
         self.hidepassword_btn1.setGeometry(QtCore.QRect(360, 460, 41, 29))
         self.hidepassword_btn1.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.hidepassword_btn1.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("/Users/pinxun/Documents/MindX/PTA/PTA07/FINAL PROJECT/MinhTuong/python-app/ui/../img/eye-slash-solid.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("/Users/pinxun/Documents/MindX/PTA/PTA07/MinhTuong/python-app/ui/../img/eye-slash-solid.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.hidepassword_btn1.setIcon(icon)
         self.hidepassword_btn1.setObjectName("hidepassword_btn1")
         self.hidepassword_btn2 = QtWidgets.QPushButton(parent=self.frame)
-        self.hidepassword_btn2.setGeometry(QtCore.QRect(360, 510, 41, 29))
+        self.hidepassword_btn2.setGeometry(QtCore.QRect(360, 520, 41, 29))
         self.hidepassword_btn2.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.hidepassword_btn2.setText("")
         self.hidepassword_btn2.setIcon(icon)
         self.hidepassword_btn2.setObjectName("hidepassword_btn2")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 500, 24))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 500, 26))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
