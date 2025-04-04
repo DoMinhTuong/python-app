@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Account_page">
      <property name="enabled">
@@ -152,6 +152,28 @@ border-radius: 5px;</string>
          <pixmap>../img/download.png</pixmap>
         </property>
        </widget>
+      </widget>
+      <widget class="QPushButton" name="setting">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>81</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(255, 255, 255);
+border-radius: 40px;
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../img/forward-solid.svg</normaloff>../img/forward-solid.svg</iconset>
+       </property>
       </widget>
      </widget>
     </widget>
@@ -771,7 +793,7 @@ color: rgb(0, 0, 0);</string>
      </widget>
     </widget>
     <widget class="QWidget" name="Mainmenu_page">
-     <widget class="QFrame" name="frame_3">
+     <widget class="QFrame" name="background_frame_2">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -789,7 +811,7 @@ color: rgb(0, 0, 0);</string>
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
-      <widget class="QTextEdit" name="textEdit">
+      <widget class="QTextEdit" name="search_bar">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -813,11 +835,11 @@ color: rgb(0, 0, 0);</string>
         <string>Finding something?</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="for_you">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>100</y>
+         <x>10</x>
+         <y>80</y>
          <width>211</width>
          <height>81</height>
         </rect>
@@ -927,7 +949,7 @@ color: rgb(0, 0, 0);</string>
       <string>Artist</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="start_btn_2">
+    <widget class="QPushButton" name="last_song">
      <property name="geometry">
       <rect>
        <x>420</x>
@@ -949,7 +971,7 @@ border-radius: 15px;
        <normaloff>../img/forward-solid.svg</normaloff>../img/forward-solid.svg</iconset>
      </property>
     </widget>
-    <widget class="QPushButton" name="start_btn_3">
+    <widget class="QPushButton" name="next_song">
      <property name="geometry">
       <rect>
        <x>620</x>
@@ -971,7 +993,7 @@ border-radius: 15px;
        <normaloff>../img/forward-solid.svg</normaloff>../img/forward-solid.svg</iconset>
      </property>
     </widget>
-    <widget class="QPushButton" name="start_btn_4">
+    <widget class="QPushButton" name="volume_btn">
      <property name="geometry">
       <rect>
        <x>890</x>
@@ -993,7 +1015,7 @@ border-radius: 15px;
        <normaloff>../img/images.png</normaloff>../img/images.png</iconset>
      </property>
     </widget>
-    <widget class="QFrame" name="frame_10">
+    <widget class="QFrame" name="volume">
      <property name="geometry">
       <rect>
        <x>1010</x>
@@ -1012,7 +1034,7 @@ border-radius: 15px;</string>
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QSlider" name="horizontalSlider">
+     <widget class="QSlider" name="volume_slider">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1026,7 +1048,7 @@ border-radius: 15px;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QFrame" name="frame_11">
+    <widget class="QFrame" name="song_progress">
      <property name="geometry">
       <rect>
        <x>250</x>
@@ -1045,7 +1067,7 @@ border-radius: 15px;</string>
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QSlider" name="horizontalSlider_2">
+     <widget class="QSlider" name="progress_slider">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1060,7 +1082,7 @@ border-radius: 15px;</string>
      </widget>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_9">
+   <widget class="QFrame" name="home_frame">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -1145,7 +1167,7 @@ border-radius: 15px;</string>
     <zorder>playlist_btn</zorder>
     <zorder>search_btn</zorder>
    </widget>
-   <widget class="QFrame" name="frame_2">
+   <widget class="QFrame" name="song_frame">
     <property name="geometry">
      <rect>
       <x>1030</x>
