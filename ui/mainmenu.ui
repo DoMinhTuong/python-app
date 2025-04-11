@@ -152,20 +152,17 @@ border-radius: 5px;</string>
          <pixmap>../img/download.png</pixmap>
         </property>
        </widget>
-       <widget class="QPushButton" name="btn_avatar">
+       <widget class="QPushButton" name="avatar_btn">
         <property name="geometry">
          <rect>
-          <x>50</x>
-          <y>20</y>
-          <width>200</width>
-          <height>200</height>
+          <x>60</x>
+          <y>50</y>
+          <width>191</width>
+          <height>151</height>
          </rect>
         </property>
-        <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 255);</string>
-        </property>
         <property name="text">
-         <string/>
+         <string>PushButton</string>
         </property>
        </widget>
       </widget>
