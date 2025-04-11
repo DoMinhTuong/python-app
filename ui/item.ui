@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
+    <width>400</width>
     <height>150</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
 border-radius:10px;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="song_icon">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -35,10 +35,10 @@ border-radius:10px;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="name">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>120</x>
       <y>0</y>
       <width>131</width>
       <height>31</height>
@@ -54,11 +54,11 @@ border-radius:10px;</string>
      <string>Song name</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="artist">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>50</y>
+      <x>120</x>
+      <y>40</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -73,13 +73,35 @@ border-radius:10px;</string>
      <string>Artist</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="play_btn">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>0</y>
+      <width>93</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(255, 255, 255);
+border-radius: 15px;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../img/images.png</normaloff>../img/images.png</iconset>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>300</width>
+     <width>400</width>
      <height>26</height>
     </rect>
    </property>
