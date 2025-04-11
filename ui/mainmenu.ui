@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Account_page">
      <property name="enabled">
@@ -150,6 +150,22 @@ border-radius: 5px;</string>
         </property>
         <property name="pixmap">
          <pixmap>../img/download.png</pixmap>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_avatar">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>20</y>
+          <width>200</width>
+          <height>200</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </widget>
