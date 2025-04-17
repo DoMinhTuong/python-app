@@ -282,6 +282,10 @@ class Home(QMainWindow):
         self.audio_output = QAudioOutput()
         self.player.setAudioOutput(self.audio_output)
         
+        # Initialize playlist and current index
+        self.current_playlist = database.get_user_playlist_songs(self.user_id)
+        self.current_song_index = -1
+        
         # Connect player signals
         self.player.errorOccurred.connect(self.handle_player_error)
         self.player.playbackStateChanged.connect(self.mediaStateChanged)
@@ -378,6 +382,14 @@ class Home(QMainWindow):
         self.btn_playlist = self.findChild(QPushButton, 'playlist_btn')
         self.stackedWidget = self.findChild(QStackedWidget, 'stackedWidget')
         
+        # Find player control buttons
+        self.btn_prev_song = self.findChild(QPushButton, 'btn_prev_song')
+        self.btn_next_song = self.findChild(QPushButton, 'btn_next_song')
+        
+        # Connect player control buttons
+        self.btn_prev_song.clicked.connect(self.previous_song)
+        self.btn_next_song.clicked.connect(self.next_song)
+        
         # Setup song container with scroll area
         self.btn_search = self.findChild(QPushButton, 'btn_search')
         self.txt_search = self.findChild(QLineEdit, 'txt_search')
@@ -441,13 +453,27 @@ class Home(QMainWindow):
         database.add_song_to_user_playlist(self.user_id, song_id)
         self.load_initial_songs()  # Refresh the song list
         self.playlist_widget.load_songs()  # Refresh the playlist view
+        # Update current playlist
+        self.current_playlist = database.get_user_playlist_songs(self.user_id)
 
     def remove_from_playlist(self, song_id):
         database.remove_song_from_user_playlist(self.user_id, song_id)
         self.load_initial_songs()  # Refresh the song list
         self.playlist_widget.load_songs()  # Refresh the playlist view
+        # Update current playlist
+        self.current_playlist = database.get_user_playlist_songs(self.user_id)
 
     def play_song(self, song_id):
+        # Always refresh the playlist when playing a song
+        self.current_playlist = database.get_user_playlist_songs(self.user_id)
+        
+        # Find the song in the current playlist
+        self.current_song_index = -1  # Reset index
+        for i, song in enumerate(self.current_playlist):
+            if str(song['id']) == str(song_id):
+                self.current_song_index = i
+                break
+        
         self.current_song = song_id
         song = database.get_song_by_id(song_id)
         file_path = QUrl.fromLocalFile(song["file_path"])
@@ -567,6 +593,34 @@ class Home(QMainWindow):
         hours, remainder = divmod(total_seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
         return f"{hours:02}:{minutes:02}:{seconds:02}"
+
+    def next_song(self):
+        if not self.current_playlist:
+            msg = Alert()
+            msg.error_message("No playlist is currently loaded")
+            return
+            
+        if self.current_song_index < len(self.current_playlist) - 1:
+            next_song = self.current_playlist[self.current_song_index + 1]
+            self.play_song(next_song['id'])
+        else:
+            # Loop back to the start of the playlist
+            first_song = self.current_playlist[0]
+            self.play_song(first_song['id'])
+
+    def previous_song(self):
+        if not self.current_playlist:
+            msg = Alert()
+            msg.error_message("No playlist is currently loaded")
+            return
+            
+        if self.current_song_index > 0:
+            prev_song = self.current_playlist[self.current_song_index - 1]
+            self.play_song(prev_song['id'])
+        else:
+            # Go to the last song in the playlist
+            last_song = self.current_playlist[-1]
+            self.play_song(last_song['id'])
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

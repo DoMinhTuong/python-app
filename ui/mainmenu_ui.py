@@ -188,22 +188,22 @@ class Ui_MainWindow(object):
         self.lbl_curr_artist.setFont(font)
         self.lbl_curr_artist.setStyleSheet("color:rgb(255, 255, 255);")
         self.lbl_curr_artist.setObjectName("lbl_curr_artist")
-        self.last_song = QtWidgets.QPushButton(parent=self.frame)
-        self.last_song.setGeometry(QtCore.QRect(420, 0, 93, 51))
-        self.last_song.setStyleSheet("background-color:rgb(255, 255, 255);\n"
+        self.btn_prev_song = QtWidgets.QPushButton(parent=self.frame)
+        self.btn_prev_song.setGeometry(QtCore.QRect(420, 0, 93, 51))
+        self.btn_prev_song.setStyleSheet("background-color:rgb(255, 255, 255);\n"
 "border-radius: 15px;\n"
 "")
-        self.last_song.setText("")
-        self.last_song.setIcon(icon)
-        self.last_song.setObjectName("last_song")
-        self.next_song = QtWidgets.QPushButton(parent=self.frame)
-        self.next_song.setGeometry(QtCore.QRect(620, 0, 93, 51))
-        self.next_song.setStyleSheet("background-color:rgb(255, 255, 255);\n"
+        self.btn_prev_song.setText("")
+        self.btn_prev_song.setIcon(icon)
+        self.btn_prev_song.setObjectName("btn_prev_song")
+        self.btn_next_song = QtWidgets.QPushButton(parent=self.frame)
+        self.btn_next_song.setGeometry(QtCore.QRect(620, 0, 93, 51))
+        self.btn_next_song.setStyleSheet("background-color:rgb(255, 255, 255);\n"
 "border-radius: 15px;\n"
 "")
-        self.next_song.setText("")
-        self.next_song.setIcon(icon)
-        self.next_song.setObjectName("next_song")
+        self.btn_next_song.setText("")
+        self.btn_next_song.setIcon(icon)
+        self.btn_next_song.setObjectName("btn_next_song")
         self.btn_volume = QtWidgets.QPushButton(parent=self.frame)
         self.btn_volume.setGeometry(QtCore.QRect(900, 50, 93, 51))
         self.btn_volume.setStyleSheet("background-color:rgb(255, 255, 255);\n"

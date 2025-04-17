@@ -506,7 +506,7 @@ color: rgb(0, 0, 0);</string>
       <string>Artist</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="last_song">
+    <widget class="QPushButton" name="btn_prev_song">
      <property name="geometry">
       <rect>
        <x>420</x>
@@ -528,7 +528,7 @@ border-radius: 15px;
        <normaloff>../img/forward-solid.svg</normaloff>../img/forward-solid.svg</iconset>
      </property>
     </widget>
-    <widget class="QPushButton" name="next_song">
+    <widget class="QPushButton" name="btn_next_song">
      <property name="geometry">
       <rect>
        <x>620</x>
