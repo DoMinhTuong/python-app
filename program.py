@@ -154,7 +154,7 @@ class SongItemWidget(QWidget):
     add_song_to_playlist = pyqtSignal(str)
     remove_song_from_playlist = pyqtSignal(str)
 
-    def __init__(self, song_id, song_name, image_path, artist_names, is_in_playlist=False):
+    def __init__(self, song_id, song_name, image_path, artist_names, is_playlist_mode=False):
         super().__init__()
         uic.loadUi("ui/song_item.ui", self)
         
@@ -163,7 +163,7 @@ class SongItemWidget(QWidget):
         self.song_name = song_name
         self.image_path = image_path
         self.artist_names = artist_names
-        self.is_in_playlist = is_in_playlist
+        self.is_playlist_mode = is_playlist_mode
         
         # Find UI elements
         self.name = self.findChild(QLabel, "lbl_name")
@@ -179,10 +179,10 @@ class SongItemWidget(QWidget):
         
         # Connect signals
         self.btn_play.clicked.connect(self.play)
-        self.btn_playlist.clicked.connect(self.toggle_playlist)
+        self.btn_playlist.clicked.connect(self.handle_playlist_action)
         
-        # Set playlist button state
-        self.update_playlist_button()
+        # Set button text based on mode
+        self.setup_playlist_button()
         
         # Set minimum size
         self.setMinimumSize(400, 80)
@@ -190,23 +190,19 @@ class SongItemWidget(QWidget):
     def play(self):
         self.play_song.emit(str(self.song_id))
 
-    def toggle_playlist(self):
-        if self.is_in_playlist:
+    def handle_playlist_action(self):
+        if self.is_playlist_mode:
             self.remove_song_from_playlist.emit(str(self.song_id))
         else:
             self.add_song_to_playlist.emit(str(self.song_id))
-        self.is_in_playlist = not self.is_in_playlist
-        self.update_playlist_button()
     
-    def update_playlist_button(self):
-        if self.is_in_playlist:
+    def setup_playlist_button(self):
+        if self.is_playlist_mode:
             self.btn_playlist.setText("Remove")
             self.btn_playlist.setProperty("class", "remove")
         else:
             self.btn_playlist.setText("Add")
             self.btn_playlist.setProperty("class", "")
-        self.btn_playlist.style().unpolish(self.btn_playlist)
-        self.btn_playlist.style().polish(self.btn_playlist)
 
 class PlaylistWidget(QWidget):
     play_song_signal = pyqtSignal(str)  # Add signal at class level
@@ -250,7 +246,8 @@ class PlaylistWidget(QWidget):
         row = 0
         col = 0
         for song in songs:
-            item = SongItemWidget(song['id'], song['name'], song['image_path'], song['artist_names'], True)
+            # Create widget in playlist mode (Remove button only)
+            item = SongItemWidget(song['id'], song['name'], song['image_path'], song['artist_names'], is_playlist_mode=True)
             item.setFixedSize(400, 80)  # Set fixed size for each item
             item.play_song.connect(self.on_play_song)  # Connect to intermediate handler
             item.remove_song_from_playlist.connect(self.remove_song)
@@ -437,8 +434,7 @@ class Home(QMainWindow):
         row = 0
         col = 0
         for song in songs:
-            is_in_playlist = database.is_song_in_user_playlist(self.user_id, song['id'])
-            item = SongItemWidget(song['id'], song['name'], song['image_path'], song['artist_names'], is_in_playlist)
+            item = SongItemWidget(song['id'], song['name'], song['image_path'], song['artist_names'], is_playlist_mode=False)
             item.setFixedSize(400, 80)  # Set fixed size for each item
             item.play_song.connect(self.play_song)
             item.add_song_to_playlist.connect(self.add_to_playlist)
@@ -450,18 +446,59 @@ class Home(QMainWindow):
                 row += 1
 
     def add_to_playlist(self, song_id):
-        database.add_song_to_user_playlist(self.user_id, song_id)
-        self.load_initial_songs()  # Refresh the song list
-        self.playlist_widget.load_songs()  # Refresh the playlist view
-        # Update current playlist
-        self.current_playlist = database.get_user_playlist_songs(self.user_id)
+        try:
+            # Check if song is already in playlist
+            if database.is_song_in_user_playlist(self.user_id, song_id):
+                msg = Alert()
+                msg.error_message("This song is already in your playlist")
+                return
+                
+            # Add song to playlist
+            database.add_song_to_user_playlist(self.user_id, song_id)
+            
+            # Update current playlist
+            self.current_playlist = database.get_user_playlist_songs(self.user_id)
+            
+            # Always refresh playlist widget to keep it in sync
+            self.playlist_widget.load_songs()
+            
+            # Show success message
+            msg = Alert()
+            msg.success_message("Song added to playlist successfully")
+            
+        except Exception as e:
+            print(f"Error adding song to playlist: {e}")
+            msg = Alert()
+            msg.error_message("Failed to add song to playlist")
 
     def remove_from_playlist(self, song_id):
-        database.remove_song_from_user_playlist(self.user_id, song_id)
-        self.load_initial_songs()  # Refresh the song list
-        self.playlist_widget.load_songs()  # Refresh the playlist view
-        # Update current playlist
-        self.current_playlist = database.get_user_playlist_songs(self.user_id)
+        try:
+            # Remove song from playlist
+            database.remove_song_from_user_playlist(self.user_id, song_id)
+            
+            # Update current playlist
+            self.current_playlist = database.get_user_playlist_songs(self.user_id)
+            
+            # Always refresh playlist widget to keep it in sync
+            self.playlist_widget.load_songs()
+            
+            # Show success message
+            msg = Alert()
+            msg.success_message("Song removed from playlist successfully")
+            
+        except Exception as e:
+            print(f"Error removing song from playlist: {e}")
+            msg = Alert()
+            msg.error_message("Failed to remove song from playlist")
+
+    def update_song_item_state(self, song_id, is_in_playlist):
+        # Find and update the song item in the current view
+        for i in range(self.song_layout.count()):
+            item = self.song_layout.itemAt(i).widget()
+            if isinstance(item, SongItemWidget) and str(item.song_id) == str(song_id):
+                item.is_playlist_mode = is_in_playlist
+                item.setup_playlist_button()
+                break
 
     def play_song(self, song_id):
         # Always refresh the playlist when playing a song
@@ -502,15 +539,17 @@ class Home(QMainWindow):
         row = 0
         column = 0
         for song in song_list:
-            itemWidget = SongItemWidget(song["id"], song["name"], song["image_path"], song["artist_names"])
+            # Create widget in song list mode (Add button only)
+            itemWidget = SongItemWidget(song["id"], song["name"], song["image_path"], song["artist_names"], is_playlist_mode=False)
             itemWidget.setFixedSize(400, 80)  # Set fixed size for each item
             itemWidget.play_song.connect(self.play_song)
+            itemWidget.add_song_to_playlist.connect(self.add_to_playlist)
             self.song_layout.addWidget(itemWidget, row, column)
             column += 1
             if column == 2:  # Show 2 columns
                 column = 0
                 row += 1
-                
+
     def search_song(self):
         name = self.txt_search.text()
         song_list = database.get_songs_by_name(name)

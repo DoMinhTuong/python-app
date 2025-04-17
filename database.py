@@ -104,7 +104,7 @@ def get_songs_by_name(name):
     conn.row_factory = dict_factory
     c = conn.cursor()
     alias = build_alias(name)
-    query = f"SELECT id,name,album_name,artist_names,image_path,file_path FROM songs WHERE name LIKE '%{name}%' OR alias LIKE '%{alias}%'"
+    query = f"SELECT id,name,album_name,artist_names,image_path,file_path FROM songs WHERE name LIKE '%{name}%' OR alias LIKE '%{alias}%' LIMIT 50"
     c.execute(query)
     result = c.fetchall()
     conn.close()
@@ -129,23 +129,6 @@ def get_song_by_id(id):
     result = c.fetchone()
     conn.close()
     return result
-
-def create_playlists_table():
-    conn = sqlite3.connect('./data/database.db')
-    cursor = conn.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS playlists (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            song_id INTEGER NOT NULL,
-            user_id INTEGER NOT NULL,
-            song_name TEXT,
-            image_path TEXT,
-            file_path TEXT
-        )
-    ''')
-    conn.commit()
-    conn.close()
 
 def add_song_to_playlist(name, song_id, user_id, song_name, image_path, file_path):
     conn = sqlite3.connect('./data/database.db')
