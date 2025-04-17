@@ -152,8 +152,9 @@ class Register(QMainWindow):
 class SongItemWidget(QWidget):
     play_song = pyqtSignal(str)
     add_song_to_playlist = pyqtSignal(str)
+    remove_song_from_playlist = pyqtSignal(str)
 
-    def __init__(self, song_id, song_name, image_path, artist_names):
+    def __init__(self, song_id, song_name, image_path, artist_names, is_in_playlist=False):
         super().__init__()
         uic.loadUi("ui/song_item.ui", self)
         
@@ -162,13 +163,14 @@ class SongItemWidget(QWidget):
         self.song_name = song_name
         self.image_path = image_path
         self.artist_names = artist_names
+        self.is_in_playlist = is_in_playlist
         
         # Find UI elements
         self.name = self.findChild(QLabel, "lbl_name")
         self.artist = self.findChild(QLabel, "lbl_artist")
         self.image = self.findChild(QLabel, "lbl_image")
         self.btn_play = self.findChild(QPushButton, "btn_play")
-        self.btn_add = self.findChild(QPushButton, "btn_add")
+        self.btn_playlist = self.findChild(QPushButton, "btn_add")
         
         # Set initial values
         self.name.setText(self.song_name)
@@ -177,7 +179,10 @@ class SongItemWidget(QWidget):
         
         # Connect signals
         self.btn_play.clicked.connect(self.play)
-        self.btn_add.clicked.connect(self.add)
+        self.btn_playlist.clicked.connect(self.toggle_playlist)
+        
+        # Set playlist button state
+        self.update_playlist_button()
         
         # Set minimum size
         self.setMinimumSize(400, 80)
@@ -185,28 +190,93 @@ class SongItemWidget(QWidget):
     def play(self):
         self.play_song.emit(str(self.song_id))
 
-    def add(self):
-        self.add_song_to_playlist.emit(str(self.song_id))
-    
-    def set_add_button_text(self, text):
-        self.btn_add.setText(text)
-    
-    def set_remove_mode(self, is_remove):
-        if is_remove:
-            self.btn_add.setProperty("class", "remove")
-            self.btn_add.setText("Remove")
+    def toggle_playlist(self):
+        if self.is_in_playlist:
+            self.remove_song_from_playlist.emit(str(self.song_id))
         else:
-            self.btn_add.setProperty("class", "")
-            self.btn_add.setText("Add")
-        self.btn_add.style().unpolish(self.btn_add)
-        self.btn_add.style().polish(self.btn_add)
+            self.add_song_to_playlist.emit(str(self.song_id))
+        self.is_in_playlist = not self.is_in_playlist
+        self.update_playlist_button()
+    
+    def update_playlist_button(self):
+        if self.is_in_playlist:
+            self.btn_playlist.setText("Remove")
+            self.btn_playlist.setProperty("class", "remove")
+        else:
+            self.btn_playlist.setText("Add")
+            self.btn_playlist.setProperty("class", "")
+        self.btn_playlist.style().unpolish(self.btn_playlist)
+        self.btn_playlist.style().polish(self.btn_playlist)
+
+class PlaylistWidget(QWidget):
+    play_song_signal = pyqtSignal(str)  # Add signal at class level
+    
+    def __init__(self, user_id):
+        super().__init__()
+        self.user_id = user_id
+        
+        # Create layout
+        self.layout = QVBoxLayout(self)
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        
+        # Create scroll area
+        self.scroll_area = QScrollArea()
+        self.scroll_area.setWidgetResizable(True)
+        self.scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        
+        # Create container for songs
+        self.songs_container = QWidget()
+        self.songs_layout = QGridLayout(self.songs_container)
+        self.songs_layout.setSpacing(20)
+        self.songs_layout.setContentsMargins(20, 20, 20, 20)
+        self.songs_layout.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
+        
+        # Setup scroll area
+        self.scroll_area.setWidget(self.songs_container)
+        self.layout.addWidget(self.scroll_area)
+        
+        # Load initial songs
+        self.load_songs()
+    
+    def load_songs(self):
+        # Clear existing widgets
+        for i in reversed(range(self.songs_layout.count())):
+            self.songs_layout.itemAt(i).widget().setParent(None)
+            
+        # Get user's playlist songs
+        songs = database.get_user_playlist_songs(self.user_id)
+        
+        # Add songs to the layout in 2 columns
+        row = 0
+        col = 0
+        for song in songs:
+            item = SongItemWidget(song['id'], song['name'], song['image_path'], song['artist_names'], True)
+            item.setFixedSize(400, 80)  # Set fixed size for each item
+            item.play_song.connect(self.on_play_song)  # Connect to intermediate handler
+            item.remove_song_from_playlist.connect(self.remove_song)
+            self.songs_layout.addWidget(item, row, col)
+            col += 1
+            if col == 2:  # Show 2 columns
+                col = 0
+                row += 1
+        
+        # Add stretch to push items to the top-left
+        self.songs_layout.setRowStretch(row + 1, 1)
+    
+    def on_play_song(self, song_id):
+        # Emit signal to parent
+        self.play_song_signal.emit(song_id)
+    
+    def remove_song(self, song_id):
+        database.remove_song_from_user_playlist(self.user_id, song_id)
+        self.load_songs()  # Refresh the view
 
 class Home(QMainWindow):
     def __init__(self, user_id):
         super().__init__()
         uic.loadUi('ui/mainmenu.ui', self)
         self.user_id = user_id
-        
+        self.user = database.find_user_by_id(user_id)
         # Initialize media player
         self.player = QMediaPlayer()
         self.audio_output = QAudioOutput()
@@ -237,6 +307,7 @@ class Home(QMainWindow):
             self.volumeOffIcon = QIcon("img/volume-off-solid.svg")
             self.muteIcon = QIcon("img/volume-xmark-solid.svg")
         except:
+            print("Warning: Could not load some icons")
             self.playIcon = None
             self.pauseIcon = None
             self.volumeHighIcon = None
@@ -265,13 +336,46 @@ class Home(QMainWindow):
         
         # Load initial data
         self.load_initial_songs()
-        self.load_playlists()
+        self.load_user_info()
+        
+    def load_user_info(self):
+        self.btn_avatar = self.findChild(QPushButton,'btn_avatar')
+        self.txt_name = self.findChild(QLineEdit,'txt_name')
+        self.txt_email = self.findChild(QLineEdit,'txt_email')
+        self.d_dob = self.findChild(QDateEdit,'d_dob')
+        self.cb_gender = self.findChild(QComboBox,'cb_gender')
+        self.btn_update_info = self.findChild(QPushButton,'btn_update_info')
+        self.btn_update_info.clicked.connect(self.update_info)
+
+
+        self.txt_name.setText(self.user["name"])
+        self.txt_email.setText(self.user["email"])
+        self.txt_email.setReadOnly(True)
+        self.d_dob.setDate(QDate.fromString(self.user["dob"], "dd/MM/yyyy"))
+        self.cb_gender.setCurrentText(self.user["gender"])
+        self.btn_avatar.setIcon(QIcon(self.user["avatar"]))
+    
+    def update_info(self):
+        name = self.txt_name.text()
+        dob = self.d_dob.date().toString("dd/MM/yyyy")
+        gender = self.cb_gender.currentText()
+        database.update_user(self.user_id, name, dob, gender)
+        msg = Alert()
+        msg.success_message("Update info success")
+        self.load_user_info() 
+    
+    def update_avatar(self):
+        file,_ = QFileDialog.getOpenFileName(self,"Select Image","","Image Files(*.png *.jpg *jpeg *.bmp)")
+        if file:
+            self.user["avatar"] = file
+            self.btn_avatar.setIcon(QIcon(file))
+            database.update_user_avatar(self.user_id, file)
     
     def setup_ui(self):
         # Find navigation buttons
-        self.btn_playlist = self.findChild(QPushButton, 'playlist_btn')
         self.btn_user = self.findChild(QPushButton, 'user_btn')
         self.btn_song_list = self.findChild(QPushButton, 'btn_song_list')
+        self.btn_playlist = self.findChild(QPushButton, 'playlist_btn')
         self.stackedWidget = self.findChild(QStackedWidget, 'stackedWidget')
         
         # Setup song container with scroll area
@@ -296,46 +400,17 @@ class Home(QMainWindow):
         scroll_layout.addWidget(self.scroll_area)
         
         # Setup playlist container
-        self.playlist_container = self.findChild(QWidget, 'playlist_container')
-        self.playlist_layout = QGridLayout(self.playlist_container)
-        
-        # Add playlist detail page
-        self.btn_create_playlist = self.findChild(QPushButton, 'btn_create_playlist')
-        self.playlist_detail_page = QWidget()
-        self.stackedWidget.addWidget(self.playlist_detail_page)
-        self.playlist_detail_layout = QVBoxLayout(self.playlist_detail_page)
-        
-        # Create playlist detail header
-        self.playlist_detail_header = QWidget()
-        header_layout = QHBoxLayout(self.playlist_detail_header)
-        
-        self.playlist_name_label = QLabel("Playlist Name")
-        self.back_button = QPushButton("Back")
-        self.back_button.clicked.connect(lambda: self.navigate(1))
-        
-        header_layout.addWidget(self.playlist_name_label)
-        header_layout.addStretch()
-        header_layout.addWidget(self.back_button)
-        
-        # Setup playlist songs scroll area
-        self.playlist_songs_scroll = QScrollArea()
-        self.playlist_songs_scroll.setWidgetResizable(True)
-        
-        self.playlist_songs_container = QWidget()
-        self.playlist_songs_layout = QGridLayout(self.playlist_songs_container)
-        self.playlist_songs_layout.setSpacing(20)
-        self.playlist_songs_layout.setContentsMargins(20, 20, 20, 20)
-        
-        self.playlist_songs_scroll.setWidget(self.playlist_songs_container)
-        
-        # Add widgets to playlist detail page
-        self.playlist_detail_layout.addWidget(self.playlist_detail_header)
-        self.playlist_detail_layout.addWidget(self.playlist_songs_scroll)
+        self.playlist_container = self.findChild(QWidget, 'playlist_widget')
+        self.playlist_widget = PlaylistWidget(self.user_id)
+        self.playlist_widget.play_song_signal.connect(self.play_song)  # Connect playlist signal
+        playlist_layout = QVBoxLayout(self.playlist_container)
+        playlist_layout.setContentsMargins(0, 0, 0, 0)
+        playlist_layout.addWidget(self.playlist_widget)
         
         # Connect signals
-        self.btn_playlist.clicked.connect(lambda: self.navigate(1))
-        self.btn_user.clicked.connect(lambda: self.navigate(0))
-        self.btn_song_list.clicked.connect(lambda: self.navigate(2))
+        self.btn_user.clicked.connect(lambda: self.navigate(0))  # Account page
+        self.btn_playlist.clicked.connect(lambda: self.navigate(1))  # Playlist page
+        self.btn_song_list.clicked.connect(lambda: self.navigate(2))  # Song list page
         self.btn_search.clicked.connect(self.search_song)
     
     def load_initial_songs(self):
@@ -350,68 +425,28 @@ class Home(QMainWindow):
         row = 0
         col = 0
         for song in songs:
-            item = SongItemWidget(song['id'], song['name'], song['image_path'], song['artist_names'])
+            is_in_playlist = database.is_song_in_user_playlist(self.user_id, song['id'])
+            item = SongItemWidget(song['id'], song['name'], song['image_path'], song['artist_names'], is_in_playlist)
             item.setFixedSize(400, 80)  # Set fixed size for each item
             item.play_song.connect(self.play_song)
-            item.add_song_to_playlist.connect(self.add_song_to_playlist)
+            item.add_song_to_playlist.connect(self.add_to_playlist)
+            item.remove_song_from_playlist.connect(self.remove_from_playlist)
             self.song_layout.addWidget(item, row, col)
             col += 1
             if col == 2:  # Show 2 columns
                 col = 0
                 row += 1
 
-    def load_playlists(self):
-        # Clear existing widgets
-        for i in reversed(range(self.playlist_layout.count())):
-            self.playlist_layout.itemAt(i).widget().setParent(None)
-            
-        playlists = database.get_playlist_by_user_id(self.user_id)
-        row = 0
-        col = 0
-        for playlist in playlists:
-            item = PlaylistItemWidget(playlist['id'], playlist['name'], playlist['image_path'])
-            item.view_playlist.connect(self.view_playlist)
-            self.playlist_layout.addWidget(item, row, col)
-            col += 1
-            if col == 3:
-                col = 0
-                row += 1
-                
-    def view_playlist(self, playlist_id):
-        # Clear existing widgets
-        for i in reversed(range(self.playlist_songs_layout.count())):
-            self.playlist_songs_layout.itemAt(i).widget().setParent(None)
-        
-        # Get playlist details
-        playlists = database.get_playlist_by_user_id(self.user_id)
-        current_playlist = next((p for p in playlists if p['id'] == playlist_id), None)
-        
-        if current_playlist:
-            self.playlist_name_label.setText(current_playlist['name'])
-            
-            # Add songs to the layout
-            row = 0
-            col = 0
-            for song in playlists:
-                if song['id'] == playlist_id:
-                    item = SongItemWidget(song['song_id'], song['song_name'], song['image_path'], song['artist_names'])
-                    item.setFixedSize(400, 80)
-                    item.play_song.connect(self.play_song)
-                    item.add_song_to_playlist.connect(lambda sid: self.remove_song_from_playlist(playlist_id, sid))
-                    item.set_remove_mode(True)
-                    self.playlist_songs_layout.addWidget(item, row, col)
-                    col += 1
-                    if col == 2:  # Show 2 columns
-                        col = 0
-                        row += 1
-            
-            # Navigate to playlist detail page
-            self.stackedWidget.setCurrentIndex(3)
-            
-    def remove_song_from_playlist(self, playlist_id, song_id):
-        database.delete_song_from_playlist(playlist_id)
-        self.view_playlist(playlist_id)  # Refresh the view
-        
+    def add_to_playlist(self, song_id):
+        database.add_song_to_user_playlist(self.user_id, song_id)
+        self.load_initial_songs()  # Refresh the song list
+        self.playlist_widget.load_songs()  # Refresh the playlist view
+
+    def remove_from_playlist(self, song_id):
+        database.remove_song_from_user_playlist(self.user_id, song_id)
+        self.load_initial_songs()  # Refresh the song list
+        self.playlist_widget.load_songs()  # Refresh the playlist view
+
     def play_song(self, song_id):
         self.current_song = song_id
         song = database.get_song_by_id(song_id)
@@ -444,48 +479,16 @@ class Home(QMainWindow):
             itemWidget = SongItemWidget(song["id"], song["name"], song["image_path"], song["artist_names"])
             itemWidget.setFixedSize(400, 80)  # Set fixed size for each item
             itemWidget.play_song.connect(self.play_song)
-            itemWidget.add_song_to_playlist.connect(self.add_song_to_playlist)
             self.song_layout.addWidget(itemWidget, row, column)
             column += 1
             if column == 2:  # Show 2 columns
                 column = 0
                 row += 1
-
-    def get_and_render_playlist(self, user_id):
-        # clear the grid layout
-        for i in reversed(range(self.playlist_layout.count())):
-            widgetToRemove = self.playlist_layout.itemAt(i).widget()
-            self.playlist_layout.removeWidget(widgetToRemove)
-            widgetToRemove.setParent(None)
-
-        playlist = database.get_playlist_by_user_id(user_id)
-        self.play_list = playlist
-        row = 0
-        column = 0
-        for song in playlist:
-            itemWidget = PlaylistItemWidget(song["song_id"], song["song_name"], song["image_path"])
-            itemWidget.play_song.connect(self.play_song)
-            itemWidget.delete_song_from_playlist.connect(self.delete_song_from_playlist)
-            self.playlist_layout.addWidget(itemWidget, row, column)
-            column += 1
-            if column == 3:
-                row += 1
-                column = 0
                 
     def search_song(self):
         name = self.txt_search.text()
         song_list = database.get_songs_by_name(name)
         self.render_song_list(song_list)
-
-    @pyqtSlot(str)
-    def add_song_to_playlist(self, song_id):
-        dialog = PlaylistSelectionDialog(self.user_id, song_id, self)
-        dialog.exec()
-        self.get_and_render_playlist(self.user_id)
-        
-    def delete_song_from_playlist(self, song_id):
-        database.delete_song_from_playlist(self.user_id, song_id)
-        self.get_and_render_playlist(self.user_id)
         
     def handle_player_error(self, error, error_string):
         print(f"Media player error: {error} - {error_string}")
@@ -564,163 +567,10 @@ class Home(QMainWindow):
         hours, remainder = divmod(total_seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
         return f"{hours:02}:{minutes:02}:{seconds:02}"
-        
-class PlaylistItemWidget(QWidget):
-    view_playlist = pyqtSignal(str)
-    
-    def __init__(self, playlist_id, playlist_name, image_path):
-        super().__init__()
-        uic.loadUi("ui/playlist_item.ui", self)
-        self.playlist_id = playlist_id
-        self.playlist_name = playlist_name
-        self.image_path = image_path
-        
-        self.name = self.findChild(QLabel, "lbl_name")
-        self.image = self.findChild(QLabel, "lbl_image")
-        self.btn_view = self.findChild(QPushButton, "btn_view")
-        
-        self.name.setText(self.playlist_name)
-        self.image.setPixmap(QPixmap(self.image_path))
-        
-        self.btn_view.clicked.connect(self.view)
-        
-    def view(self):
-        self.view_playlist.emit(self.playlist_id)
-
-class PlaylistDetailWindow(QMainWindow):
-    def __init__(self, playlist_id, user_id):
-        super().__init__()
-        uic.loadUi('ui/playlist_detail.ui', self)
-        self.playlist_id = playlist_id
-        self.user_id = user_id
-        
-        self.songs_container = self.findChild(QWidget, 'songs_container')
-        self.songs_layout = QGridLayout(self.songs_container)
-        
-        self.load_playlist_songs()
-        
-    def load_playlist_songs(self):
-        # Clear existing widgets
-        for i in reversed(range(self.songs_layout.count())):
-            self.songs_layout.itemAt(i).widget().setParent(None)
-            
-        songs = database.get_playlist_by_user_id(self.user_id)
-        row = 0
-        col = 0
-        for song in songs:
-            if song['id'] == self.playlist_id:
-                item = SongItemWidget(song['song_id'], song['song_name'], song['image_path'], song['artist_names'])
-                item.setFixedSize(400, 80)  # Set fixed size for each item
-                item.play_song.connect(self.play_song)
-                item.add_song_to_playlist.connect(self.remove_song)
-                self.songs_layout.addWidget(item, row, col)
-                col += 1
-                if col == 2:  # Show 2 columns
-                    col = 0
-                    row += 1
-                    
-    def play_song(self, song_id):
-        # Implement song playback
-        pass
-        
-    def remove_song(self, song_id):
-        database.delete_song_from_playlist(song_id)
-        self.load_playlist_songs()
-
-class PlaylistSelectionDialog(QDialog):
-    def __init__(self, user_id, song_id, parent=None):
-        super().__init__(parent)
-        self.user_id = user_id
-        self.song_id = song_id
-        self.setWindowTitle("Select Playlist")
-        self.setMinimumWidth(300)
-        
-        layout = QVBoxLayout(self)
-        
-        # Create list widget for playlists
-        self.playlist_list = QListWidget()
-        self.playlist_list.setStyleSheet("""
-            QListWidget {
-                background-color: #2A2A2A;
-                color: white;
-                border-radius: 10px;
-                padding: 10px;
-            }
-            QListWidget::item {
-                padding: 10px;
-                border-bottom: 1px solid #3A3A3A;
-            }
-            QListWidget::item:selected {
-                background-color: #1DB954;
-            }
-        """)
-        
-        # Add playlists to the list
-        playlists = database.get_playlist_by_user_id(self.user_id)
-        for playlist in playlists:
-            item = QListWidgetItem(playlist['name'])
-            item.setData(Qt.ItemDataRole.UserRole, playlist['id'])
-            self.playlist_list.addItem(item)
-            
-        layout.addWidget(self.playlist_list)
-        
-        # Add buttons
-        button_layout = QHBoxLayout()
-        
-        self.add_button = QPushButton("Add to Playlist")
-        self.add_button.setStyleSheet("""
-            QPushButton {
-                background-color: #1DB954;
-                color: white;
-                border-radius: 15px;
-                padding: 10px;
-            }
-            QPushButton:hover {
-                background-color: #1ed760;
-            }
-        """)
-        self.add_button.clicked.connect(self.add_to_playlist)
-        
-        self.cancel_button = QPushButton("Cancel")
-        self.cancel_button.setStyleSheet("""
-            QPushButton {
-                background-color: #FF4444;
-                color: white;
-                border-radius: 15px;
-                padding: 10px;
-            }
-            QPushButton:hover {
-                background-color: #ff6666;
-            }
-        """)
-        self.cancel_button.clicked.connect(self.reject)
-        
-        button_layout.addWidget(self.add_button)
-        button_layout.addWidget(self.cancel_button)
-        layout.addLayout(button_layout)
-        
-    def add_to_playlist(self):
-        selected_items = self.playlist_list.selectedItems()
-        if not selected_items:
-            QMessageBox.warning(self, "Warning", "Please select a playlist")
-            return
-            
-        playlist_id = selected_items[0].data(Qt.ItemDataRole.UserRole)
-        song = database.get_song_by_id(self.song_id)
-        
-        # Check if song already exists in playlist
-        exist_song = database.get_playlist_by_user_id_and_song_id(self.user_id, self.song_id)
-        if exist_song:
-            QMessageBox.warning(self, "Warning", "Song already in playlist")
-            return
-            
-        database.add_song_to_playlist(playlist_id, self.song_id, song["name"], song["image_path"])
-        QMessageBox.information(self, "Success", "Song added to playlist")
-        self.accept()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    login = Login()
-    login = Home(2)
-    login.show()
+    window = Login()
+    window = Home(2)
+    window.show()
     app.exec()

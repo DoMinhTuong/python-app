@@ -75,7 +75,30 @@ def find_user_by_email_and_password(email, password):
     conn.close()
     return user
 
-    
+def find_user_by_id(user_id):
+    conn = sqlite3.connect('./data/database.db')
+    cursor = conn.cursor()
+    cursor.row_factory = dict_factory
+    cursor.execute('SELECT id, email, name, password, dob, gender, avatar FROM user WHERE id = ?',(user_id,))
+    user = cursor.fetchone()
+    conn.close()
+    return user
+
+def update_user_avatar(user_id, avatar):
+    conn = sqlite3.connect('./data/database.db')
+    cursor = conn.cursor()
+    cursor.row_factory = dict_factory
+    cursor.execute('UPDATE user SET avatar = ? WHERE id = ?',(avatar,user_id))
+    conn.commit()
+    conn.close()
+
+def update_user(user_id, name, dob, gender):
+    conn = sqlite3.connect('./data/database.db')
+    cursor = conn.cursor()
+    cursor.execute('UPDATE user SET name = ?, dob = ?, gender = ? WHERE id = ?',(name,dob,gender,user_id))
+    conn.commit()
+    conn.close()
+
 def get_songs_by_name(name):
     conn = sqlite3.connect('./data/database.db')
     conn.row_factory = dict_factory
@@ -116,18 +139,21 @@ def create_playlists_table():
             name TEXT NOT NULL,
             song_id INTEGER NOT NULL,
             user_id INTEGER NOT NULL,
-            FOREIGN KEY (song_id) REFERENCES songs(id),
-            FOREIGN KEY (user_id) REFERENCES users(id)
+            song_name TEXT,
+            image_path TEXT,
+            file_path TEXT
         )
     ''')
     conn.commit()
     conn.close()
 
-def add_song_to_playlist(name, song_id, user_id):
+def add_song_to_playlist(name, song_id, user_id, song_name, image_path, file_path):
     conn = sqlite3.connect('./data/database.db')
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO playlists (name, song_id, user_id) VALUES (?, ?, ?)',
-                  (name, song_id, user_id))
+    cursor.execute('''
+        INSERT INTO playlists (name, song_id, user_id, song_name, image_path, file_path) 
+        VALUES (?, ?, ?, ?, ?, ?)
+    ''', (name, song_id, user_id, song_name, image_path, file_path))
     conn.commit()
     conn.close()
 
@@ -199,9 +225,58 @@ def get_playlist_songs(playlist_id):
     conn.close()
     return songs
 
-# Call this function when initializing the database
-create_playlists_table()
+def is_song_in_user_playlist(user_id, song_id):
+    conn = sqlite3.connect('./data/database.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        SELECT COUNT(*) FROM playlists 
+        WHERE user_id = ? AND song_id = ?
+    ''', (user_id, song_id))
+    count = cursor.fetchone()[0]
+    conn.close()
+    return count > 0
 
-#create_user('domintuong08@gmail.com', 'Do Minh Tuong', 567321)
-# print(find_user_by_email('domintuong08@gmail.com'))
-# print(find_user_by_email_and_password('domintuong08@gmail.com', '567321'))
+def get_user_playlist_songs(user_id):
+    conn = sqlite3.connect('./data/database.db')
+    conn.row_factory = dict_factory
+    cursor = conn.cursor()
+    cursor.execute('''
+        SELECT s.id, s.name, s.artist_names, s.image_path, s.file_path
+        FROM playlists p
+        JOIN songs s ON p.song_id = s.id
+        WHERE p.user_id = ?
+    ''', (user_id,))
+    songs = cursor.fetchall()
+    conn.close()
+    return songs
+
+def add_song_to_user_playlist(user_id, song_id):
+    conn = sqlite3.connect('./data/database.db')
+    cursor = conn.cursor()
+    
+    # Get song details
+    cursor.execute('''
+        SELECT name, image_path, file_path 
+        FROM songs 
+        WHERE id = ?
+    ''', (song_id,))
+    song = cursor.fetchone()
+    
+    if song:
+        cursor.execute('''
+            INSERT INTO playlists (name, song_id, user_id, song_name, image_path, file_path)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', ('My Playlist', song_id, user_id, song[0], song[1], song[2]))
+    
+    conn.commit()
+    conn.close()
+
+def remove_song_from_user_playlist(user_id, song_id):
+    conn = sqlite3.connect('./data/database.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        DELETE FROM playlists 
+        WHERE user_id = ? AND song_id = ?
+    ''', (user_id, song_id))
+    conn.commit()
+    conn.close()
