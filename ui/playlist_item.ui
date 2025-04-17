@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PlaylistItemWidget</class>
+ <widget class="QWidget" name="PlaylistItemWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>100</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #2A2A2A; border-radius: 10px; padding: 10px;</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QLabel" name="lbl_image">
+     <property name="minimumSize">
+      <size>
+       <width>80</width>
+       <height>80</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>80</width>
+       <height>80</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 5px;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="lbl_name">
+       <property name="styleSheet">
+        <string notr="true">color: white; font-size: 14px; font-weight: bold;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="buttonLayout">
+       <item>
+        <widget class="QPushButton" name="btn_view">
+         <property name="text">
+          <string>View</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #1DB954; color: white; border-radius: 15px; padding: 5px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_edit">
+         <property name="text">
+          <string>Edit</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #1DB954; color: white; border-radius: 15px; padding: 5px;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_delete">
+         <property name="text">
+          <string>Delete</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #FF4444; color: white; border-radius: 15px; padding: 5px;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui> 

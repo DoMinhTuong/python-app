@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PlaylistDetail</class>
+ <widget class="QMainWindow" name="PlaylistDetail">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Playlist Detail</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #121212;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QWidget" name="playlist_detail_header" native="true">
+      <property name="styleSheet">
+       <string notr="true">background-color: #2A2A2A;
+border-radius: 10px;
+padding: 20px;</string>
+      </property>
+      <layout class="QHBoxLayout" name="header_layout">
+       <item>
+        <widget class="QLabel" name="playlist_name_label">
+         <property name="styleSheet">
+          <string notr="true">color: white;
+font-size: 24px;
+font-weight: bold;</string>
+         </property>
+         <property name="text">
+          <string>Playlist Name</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="back_button">
+         <property name="styleSheet">
+          <string notr="true">background-color: #FF4444;
+color: white;
+border-radius: 15px;
+padding: 5px 15px;</string>
+         </property>
+         <property name="text">
+          <string>Back</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QScrollArea" name="playlist_songs_scroll">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QScrollArea {
+    border: none;
+    background-color: transparent;
+}
+QScrollBar:vertical {
+    border: none;
+    background: #404040;
+    width: 10px;
+    margin: 0px;
+}
+QScrollBar::handle:vertical {
+    background: #808080;
+    min-height: 20px;
+    border-radius: 5px;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}</string>
+      </property>
+      <widget class="QWidget" name="playlist_songs_container">
+       <property name="styleSheet">
+        <string notr="true">background-color: transparent;</string>
+       </property>
+       <layout class="QGridLayout" name="playlist_songs_layout">
+        <property name="spacing">
+         <number>20</number>
+        </property>
+        <property name="leftMargin">
+         <number>20</number>
+        </property>
+        <property name="topMargin">
+         <number>20</number>
+        </property>
+        <property name="rightMargin">
+         <number>20</number>
+        </property>
+        <property name="bottomMargin">
+         <number>20</number>
+        </property>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui> 

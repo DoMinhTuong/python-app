@@ -1,1 +1,4 @@
 __pycache__/
+ui/*.py
+music_files
+song_images
