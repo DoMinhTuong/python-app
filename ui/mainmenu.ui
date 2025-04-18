@@ -86,14 +86,18 @@ border-radius: 30px</string>
        <widget class="QPushButton" name="btn_avatar">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>10</y>
-          <width>191</width>
-          <height>151</height>
+          <x>80</x>
+          <y>30</y>
+          <width>150</width>
+          <height>150</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:rgb(255, 255, 255);
+border-radius: 10px;</string>
+        </property>
         <property name="text">
-         <string>PushButton</string>
+         <string/>
         </property>
        </widget>
        <widget class="QDateEdit" name="d_dob">
