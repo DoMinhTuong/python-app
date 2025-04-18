@@ -175,7 +175,7 @@ class SongItemWidget(QWidget):
         # Set initial values
         self.name.setText(self.song_name)
         self.artist.setText(self.artist_names)
-        self.image.setPixmap(QPixmap(self.image_path))
+        self.image.setPixmap(QPixmap(self.image_path.replace("/", "\\")))
         
         # Connect signals
         self.btn_play.clicked.connect(self.play)
@@ -247,7 +247,7 @@ class PlaylistWidget(QWidget):
         col = 0
         for song in songs:
             # Create widget in playlist mode (Remove button only)
-            item = SongItemWidget(song['id'], song['name'], song['image_path'], song['artist_names'], is_playlist_mode=True)
+            item = SongItemWidget(song['id'], song['name'], song['image_path'].replace("/", "\\"), song['artist_names'], is_playlist_mode=True)
             item.setFixedSize(400, 80)  # Set fixed size for each item
             item.play_song.connect(self.on_play_song)  # Connect to intermediate handler
             item.remove_song_from_playlist.connect(self.remove_song)
@@ -434,7 +434,7 @@ class Home(QMainWindow):
         row = 0
         col = 0
         for song in songs:
-            item = SongItemWidget(song['id'], song['name'], song['image_path'], song['artist_names'], is_playlist_mode=False)
+            item = SongItemWidget(song['id'], song['name'], song['image_path'].replace("/", "\\"), song['artist_names'], is_playlist_mode=False)
             item.setFixedSize(400, 80)  # Set fixed size for each item
             item.play_song.connect(self.play_song)
             item.add_song_to_playlist.connect(self.add_to_playlist)
@@ -513,7 +513,7 @@ class Home(QMainWindow):
         
         self.current_song = song_id
         song = database.get_song_by_id(song_id)
-        file_path = QUrl.fromLocalFile(song["file_path"])
+        file_path = QUrl.fromLocalFile(song["file_path"].replace("/", "\\"))
         self.player.setSource(file_path)
         self.player.play()
         
@@ -523,7 +523,7 @@ class Home(QMainWindow):
             self.playBtn.setText("Pause")
         
         self.curr_name.setText(f"Now playing: {song['name']}")
-        self.curr_img.setPixmap(QPixmap(song["image_path"]))
+        self.curr_img.setPixmap(QPixmap(song["image_path"].replace("/", "\\")))
         self.curr_artist.setText(f"Artist: {song['artist_names']}")
     
     def navigate(self, index):
@@ -540,7 +540,7 @@ class Home(QMainWindow):
         column = 0
         for song in song_list:
             # Create widget in song list mode (Add button only)
-            itemWidget = SongItemWidget(song["id"], song["name"], song["image_path"], song["artist_names"], is_playlist_mode=False)
+            itemWidget = SongItemWidget(song["id"], song["name"], song["image_path"].replace("/", "\\"), song["artist_names"], is_playlist_mode=False)
             itemWidget.setFixedSize(400, 80)  # Set fixed size for each item
             itemWidget.play_song.connect(self.play_song)
             itemWidget.add_song_to_playlist.connect(self.add_to_playlist)
