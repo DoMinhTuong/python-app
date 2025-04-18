@@ -664,6 +664,5 @@ class Home(QMainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = Login()
-    window = Home(2)
     window.show()
     app.exec()
